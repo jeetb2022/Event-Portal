@@ -6,6 +6,7 @@
     <title>Event Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/evntportl.css">
+    <link rel="stylesheet" href="style1.css">
   </head>
   <body>
     <!-- NavBar starts-->
@@ -15,8 +16,27 @@
             <ul class="navbar-nav">
                 <li class=" nav-item"><a href="" class=" nav-link">Home</a></li>
                 <li class=" nav-item"><a href="" class=" nav-link">Events</a></li>
-                <li class=" nav-item"><a href="" class=" nav-link">Login as User</a></li>
-                <li class=" nav-item"><a href="" class=" nav-link">Login as admin</a></li>
+                <li class=" nav-item"><a href="" class=" nav-link" id="show-login">Login as User</a></li>
+                <!-- <div class="center">
+                    <button id="show-login">Login</button>
+                </div> -->
+                <div class="popup">
+                    <div class="close-btn">
+                        &times;
+                    </div>
+                    <div class="form">
+                        <h2>Log In</h2>
+                        <div class="form-element">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="email" placeholder="Enter Email"><br>
+                            <label for="password" >Password</label>
+                            <input type="password" class="password" placeholder="Enter Password"><br>
+                            <button>Sign In</button>
+                            <a href="#">Forgot Password?</a>  
+                        </div>
+                    </div>
+                </div>
+                <script src="java.js"></script>
             </ul>
         </div>
     </nav>
