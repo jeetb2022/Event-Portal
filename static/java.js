@@ -1,7 +1,7 @@
-document.querySelector("#show-login").addEventListener("click",function(){
-    document.querySelector(".popup").classList.add("active");
+$("#show-login").click(function(){
+    $(".popup").addClass("active");
 });
 
-document.querySelector(".popup .close-btn").addEventListener("click",function(){
-    document.querySelector(".popup").classList.remove("active");
+$(".popup .close-btn").click(function(){
+    $(".popup").removeClass("active");
 });

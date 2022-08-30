@@ -2,7 +2,6 @@ const express = require('express');
 
 const app =express();
 const port = 80;
-
 app.use("/static",express.static("static"));
 
 
