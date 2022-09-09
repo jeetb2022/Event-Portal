@@ -3,9 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var userModel = require('../models/userModel');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Home page' });
-  });
+
 
 router.post('/add-user', function (req, res, next) {
 
@@ -33,6 +31,9 @@ router.post('/add-user', function (req, res, next) {
                 console.log('Error during record insertion : ' + err);
             }
         });
+
+
+        
 
     // }
     // else {   //Display errors to user

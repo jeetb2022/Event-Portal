@@ -15,15 +15,15 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <a href="" class="navbar-brand">Event Portal</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class=" nav-item"><a href="" class=" nav-link">Home</a></li>
                 <li class=" nav-item"><a href="" class=" nav-link">Events</a></li>
                 <li class=" nav-item"><a id="show-register" class="nav-link">Register</a></li>
-                <li class=" nav-item"><a id="show-login" class="nav-link">Login</a></li>
+                <li class=" nav-item"><a href="/logout" id="show-logout" class="nav-link">Log out</a></li>
                 <div class="popup">
                     <div class="close-btn">
                         &times;
@@ -59,7 +59,8 @@
         </div>
         <div class="img-content">
             <h2 class="heading">Welcome to our event portal</h2>
-            <p class="p-heading">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis, vitae culpa sed officia veniam quasi
+            <p class="p-heading">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis, vitae culpa sed
+                officia veniam quasi
                 suscipit tenetur dolores, aperiam rem temporibus quae ipsam fugiat labore excepturi blanditiis adipisci
                 cumque, amet eveniet autem consequatur? Illum.</p>
         </div>
@@ -75,61 +76,123 @@
 
             <div class="container event">
                 <div class="row justify-content-center text-center">
-                    <div class="col-sm-5">
-                        <div class="img">
 
-                            <img src="images/stand-up.webp" class="img-fluid" alt="">
-                        </div>
-                        <div class="event-content">
-                            <h3>Stand-up comedy</h3>
-                            <!-- <span>Date: 6/9
+
+
+
+
+                    <% var i=1; %>
+                        <% userData.forEach((data)=>{%>
+                            <div class="col-sm-5">
+
+                                <div class="img">
+                                
+                                    <img src=<%=data.event_picture %> class="img-fluid" alt="">
+                                </div>
+                                <div class="event-content">
+                                    <h3><%=data.event_name %></h3>
+                                    <span>Date: <%=data.date_and_time %><br>
+                        
+                        Venue: <%=data.event_venue %><br>
+                        Price:<%=data.price %></span>
+
+                                </div>
+                            </div>
+                            <br><br>
+                            <% i++; }) %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!--   wdkjfeyyruruudud -->
+
+
+
+
+                                <div class="col-sm-5">
+
+                                    <div class="img">
+
+                                        <img src="images/stand-up.webp" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="event-content">
+                                        <h3>Stand-up comedy</h3>
+                                        <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
 
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="img">
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="img">
 
-                            <img src="images/tournament.webp" class="img-fluid" alt="">
-                        </div>
-                        <div class="event-content">
-                            <h3>E-sports</h3>
-                            <!-- <span>Date: 6/9
+                                        <img src="images/tournament.webp" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="event-content">
+                                        <h3>E-sports</h3>
+                                        <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
 
-                    <div class="col-sm-5">
-                        <div class="img">
+                                <div class="col-sm-5">
+                                    <div class="img">
 
-                            <img src="images/concert.webp" class="img-fluid" alt="">
-                        </div>
-                        <div class="event-content">
-                            <h3>Music-Concert</h3>
-                            <!-- <span>Date: 6/9
+                                        <img src="images/concert.webp" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="event-content">
+                                        <h3>Music-Concert</h3>
+                                        <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="img">
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="img">
 
-                            <img src="images/yacht.webp" class="img-fluid" alt="">
-                        </div>
-                        <div class="event-content">
-                            <h3>Yacht Party</h3>
-                            <!-- <span>Date: 6/9
+                                        <img src="images/yacht.webp" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="event-content">
+                                        <h3>Yacht Party</h3>
+                                        <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
                 </div>
+
+
+
+
+
+
+
+
 
             </div>
         </section>
@@ -137,27 +200,31 @@
         <!-- testimonials -->
         <section id="testimonials" class="color-section">
             <div id="testimonials-carousel" class="carousel slide" data-ride="false">
-              <div class="carousel-inner">
-                <div class="carousel-item active container-fluid">
-                  <h2 class="testimonials-text">I recently attended stand up organised by  . It was such a fabulous performance by the artist. I loved the way, he cracked jokes boycott going on.</h2>
-                  <img src="dog-img.jpg" alt="dog-profile" class="testimonials-img">
-                  <em>Pebbles, New York</em>
+                <div class="carousel-inner">
+                    <div class="carousel-item active container-fluid">
+                        <h2 class="testimonials-text">I recently attended stand up organised by . It was such a fabulous
+                            performance by the artist. I loved the way, he cracked jokes boycott going on.</h2>
+                        <img src="dog-img.jpg" alt="dog-profile" class="testimonials-img">
+                        <em>Pebbles, New York</em>
+                    </div>
+                    <div class="carousel-item container-fluid">
+                        <h2 class="testimonials-text">My dog used to be so lonely, but with TinDog's help, they've found
+                            the love of
+                            their life. I think.</h2>
+                        <img class="testimonials-img" src="lady-img.jpg" alt="lady-profile">
+                        <em>Beverly, Illinois</em>
+                    </div>
                 </div>
-                <div class="carousel-item container-fluid">
-                  <h2 class="testimonials-text">My dog used to be so lonely, but with TinDog's help, they've found the love of
-                    their life. I think.</h2>
-                  <img class="testimonials-img" src="lady-img.jpg" alt="lady-profile">
-                  <em>Beverly, Illinois</em>
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              </button>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
             </div>
-          </section>
+        </section>
 
 
         <!-- footer -->
@@ -172,7 +239,7 @@
                 <div class="col-4">
                     <h3 class="footer-heading">Links</h3>
                     <ul class="footer-list">
-                        <li class="footer-part" ><a href="#" class="footer-link">Home</a></li>
+                        <li class="footer-part"><a href="#" class="footer-link">Home</a></li>
                         <li class="footer-part"><a href="#" class="footer-link">Events</a></li>
                         <li class="footer-part"><a href="#" class="footer-link">Your Events</a></li>
                         <li class="footer-part"><a href="#" class="footer-link">FaQ's</a></li>
@@ -181,18 +248,25 @@
                 <div class="col-4">
                     <h3 class="footer-heading">Contact Us</h3>
                     <ul class="footer-list">
-                        <li class="footer-part"><p class="footer-p">eventportal@gmail.com</p></li>
-                        <li class="footer-part" ><p class="footer-p">+91-9999999999</p></li>
+                        <li class="footer-part">
+                            <p class="footer-p">eventportal@gmail.com</p>
+                        </li>
+                        <li class="footer-part">
+                            <p class="footer-p">+91-9999999999</p>
+                        </li>
                         <!-- <li class="footer-part"><p class="footer-p">Your Events</p></li> -->
-                        <li class="footer-part"><p class="footer-p">Contact Us</p></li>
+                        <li class="footer-part">
+                            <p class="footer-p">Contact Us</p>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <p class="copyright">Copyright @2022 <i class="fa-brands fa-square-facebook"></i> <i class="fa-brands fa-instagram "> <i class="fa-brands fa-twitter"></i> </i></p>
+            <p class="copyright">Copyright @2022 <i class="fa-brands fa-square-facebook"></i> <i
+                    class="fa-brands fa-instagram "> <i class="fa-brands fa-twitter"></i> </i></p>
             <!-- </div> -->
         </section>
-        
-    </div> 
+
+    </div>
 
 
 
@@ -214,13 +288,13 @@
         function openForm() {
 
         }
-        $("#show-login").click(function(){
-    $(".popup").addClass("active");
-});
+        $("#show-login").click(function () {
+            $(".popup").addClass("active");
+        });
 
-$(".popup .close-btn").click(function(){
-    $(".popup").removeClass("active");
-});
+        $(".popup .close-btn").click(function () {
+            $(".popup").removeClass("active");
+        });
     </script>
     <script src="javasripts/java.js"></script>
     <script src="https://kit.fontawesome.com/ac602b1922.js" crossorigin="anonymous"></script>
