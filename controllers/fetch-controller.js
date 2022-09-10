@@ -1,10 +1,10 @@
-var fetchModel= require('../Models/fetch-model');
-module.exports={
+// var fetchModel= require('../Models/fetch-model');
+// module.exports={
  
-    fetchData:function(req, res){
+//     fetchData:function(req, res){
       
-      fetchModel.fetchData(function(data){
-          res.render('index',{userData:data});
-      })
-    }
-}
+//       fetchModel.fetchData(function(data){
+//           res.render('index',{ userData: data});
+//       })
+//     }
+// }

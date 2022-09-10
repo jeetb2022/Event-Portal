@@ -15,6 +15,10 @@ var usersRouter = require('./routes/users');
 
 
 
+
+
+
+
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,14 +37,6 @@ app.use(session({
 app.use(flash());
 
 
-// fetching data
-var fetchRouter = require('./routes/fetch-route');
-app.use('/index', fetchRouter);
-
-
-
-
-
 
 
 // passport 
@@ -48,7 +44,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const methodOverride = require("method-override");
 
-// todo - add external db support
+// db support
 const users = require('./Models/loginModel');
 
 // configuring and initializing passport
@@ -63,14 +59,29 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride("_method"));
 
+
+
+
+
+
 // routes
 
-// welcome page
-// display greetings message for the user and logout button
-var userName = initializePassport.name;
+
+// index page
+var fetchModel = require("./Models/fetch-model");
 app.get("/index", checkAuthenticated, (req, res) => {
-  res.render("index");
+  fetchModel.fetchModel.find({}, function (err, allDetails) {
+    if (err) {
+        console.log(err);
+    } else {
+        res.render("index", { userData: allDetails })
+    }
+})
 });
+
+
+
+
 
 // login page
 app.get("/login", checkNotAuthenticated, (req, res) => {
@@ -87,7 +98,7 @@ app.post(
   })
 );
 
-// new user sign-up page
+// new user register page
 app.get("/register", checkNotAuthenticated, (req, res) => {
   res.render("register");
 });
@@ -102,7 +113,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
          newUser.email = req.body.email;
          newUser.password = req.body.password;
  
-         //save the user and checkfor errors
+         //save the user in mongoData base
          newUser.save(function(err) {
              if (err) {
                  res.send(err);
@@ -118,32 +129,32 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 });
 
 // logout of the application
-app.get("/logout", (req, res) => {
+app.delete("/logout",checkAuthenticated, (req, res) => {
   req.logOut(function(err) {
     if (err) { return next(err); }
     res.redirect('/login');
   });
 });
 
-// util methods
+
 
 // only authenticated user should enter index page
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    res.redirect("/login");
+    // res.redirect("/login");
+    res.send("u are not authorized  ");
   }
 }
 
 // unauthenticated user should not enter index page
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect("/");
+    return res.redirect("/index");
   }
   next();
 }
-
 
 
 
@@ -176,7 +187,8 @@ app.use(function(req, res, next) {
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
-// module.exports = app;
+
 app.listen(3000,()=>{
   console.log("the server is running on port 3000");
 });
+

@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var fetchController= require('../controllers/fetch-controller');
+// var express = require('express');
+// var router = express.Router();
+// var fetchController= require('../controllers/fetch-controller');
+// // const f =require("../app");
+// // var func = f.checkAuthenticated;
+// router.get('/index',fetchController.fetchData);
 
-router.get('/',fetchController.fetchData);
-
-module.exports = router;
+// module.exports = router;

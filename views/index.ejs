@@ -23,7 +23,9 @@
                 <li class=" nav-item"><a href="" class=" nav-link">Home</a></li>
                 <li class=" nav-item"><a href="" class=" nav-link">Events</a></li>
                 <li class=" nav-item"><a id="show-register" class="nav-link">Register</a></li>
-                <li class=" nav-item"><a href="/logout" id="show-logout" class="nav-link">Log out</a></li>
+                <li class=" nav-item"><form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit">Sign Out</button>
+                  </form> </a></li>
                 <div class="popup">
                     <div class="close-btn">
                         &times;
@@ -82,7 +84,7 @@
 
 
                     <% var i=1; %>
-                        <% userData.forEach((data)=>{%>
+                        <% userData.forEach((data)=>{ %>
                             <div class="col-sm-5">
 
                                 <div class="img">
