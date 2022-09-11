@@ -66,7 +66,6 @@ app.use(methodOverride("_method"));
 
 // routes
 
-
 // index page
 var fetchModel = require("./Models/fetch-model");
 app.get("/index", checkAuthenticated, (req, res) => {
@@ -81,18 +80,44 @@ app.get("/index", checkAuthenticated, (req, res) => {
 
 
 
+app.get("/indexForAdmin", checkAuthenticated, (req, res) => {
+  fetchModel.fetchModel.find({}, function (err, allDetails) {
+    if (err) {
+        console.log(err);
+    } else {
+        res.render("indexForAdmin", { userData: allDetails })
+    }
+})
+});
+
+
+
 
 
 // login page
-app.get("/login", checkNotAuthenticated, (req, res) => {
-  res.render("login");
+app.get("/loginAsUser", checkNotAuthenticated, (req, res) => {
+  res.render("loginAsUser");
+});
+app.get("/loginAsAdmin", checkNotAuthenticated, (req, res) => {
+  res.render("loginAsAdmin");
 });
 
+
+
 app.post(
-  "/login",
+  "/loginAsUser",
   checkNotAuthenticated,
   passport.authenticate("local", {
     successRedirect: "/index",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
+app.post(
+  "/loginAsAdmin",
+  checkNotAuthenticated,
+  passport.authenticate("local", {
+    successRedirect: "/indexForAdmin",
     failureRedirect: "/login",
     failureFlash: true,
   })
@@ -107,7 +132,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
   try {
     // const hashedPassword = await bcrypt.hash(req.body.password, 10);
     var id= "_" + Math.random().toString(36).slice(2);
-     var newUser = new users();
+     var newUser = new users.user();
          newUser.id = id;
          newUser.name = req.body.name;
          newUser.email = req.body.email;
@@ -118,7 +143,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
              if (err) {
                  res.send(err);
              } else {
-                 res.redirect('/login');
+                 res.redirect('/loginAsUser');
              }    
          });
   } catch (e) {
@@ -132,7 +157,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 app.delete("/logout",checkAuthenticated, (req, res) => {
   req.logOut(function(err) {
     if (err) { return next(err); }
-    res.redirect('/login');
+    res.redirect('/');
   });
 });
 

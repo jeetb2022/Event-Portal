@@ -18,4 +18,15 @@ var userSchema = new mongoose.Schema({
             password : String
         });
 var userModel=mongoose.model('userid',userSchema);
-module.exports= userModel;
+var adminSchema = new mongoose.Schema({
+            id : String,
+            name: String,
+            email:String,
+            password : String
+        });
+var adminModel=mongoose.model('adminid',adminSchema);
+module.exports={
+
+   user :  userModel,
+   admin : adminModel
+}

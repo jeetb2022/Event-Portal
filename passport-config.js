@@ -8,7 +8,7 @@ function initialize(passport) {
   const authenticateUser = async (email, password, done) => {
     var user;
 
-    User.findOne({ email: email }, function (err, docs) {
+    User.user.findOne({ email: email }, function (err, docs) {
 
       if (err) {
         console.log(err);
