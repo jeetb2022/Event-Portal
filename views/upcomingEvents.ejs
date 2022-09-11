@@ -1,0 +1,17 @@
+
+                    <% var i=1; %>
+                    <% upcomingEvents.forEach((data)=>{ %>
+                        <div >
+
+                            
+                            <div class="event-content">
+                                <h3><%=data.event_name %></h3>
+                                <span> Event Code : <%=data.event_id %><br> Date: <%=data.date_and_time %><br>
+                    
+                    Venue: <%=data.event_venue %><br>
+                    Price:<%=data.price %></span>
+
+                            </div>
+                        </div>
+                        <br><br>
+                        <% i++; }) %>

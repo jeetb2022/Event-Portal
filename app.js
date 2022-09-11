@@ -18,7 +18,6 @@ var usersRouter = require('./routes/users');
 
 
 
-
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -89,7 +88,6 @@ app.get("/indexForAdmin", checkAuthenticated, (req, res) => {
     }
 })
 });
-
 
 
 
@@ -191,6 +189,90 @@ function checkNotAuthenticated(req, res, next) {
 
 
 
+
+// Register For an event 
+const registerAnEventModel = require('./Models/registerAnEventModel');
+app.get('/registerAnEvent',checkAuthenticated,(req,res,next)=>{
+  res.render('registerForEvent');  
+});
+app.post('/registerAnEvent',checkAuthenticated,(req,res,next)=>{
+  var email = req.body.email;
+  var eventId = req.body.eventId;
+  
+  fetchModel.fetchModel.findOne({event_id : eventId },(err,allDetails)=>{
+    var event_name= allDetails["event_name"];
+    var price= allDetails["price"];
+    var event_venue = allDetails["event_venue"];
+    var date_and_time= allDetails["date_and_time"];
+    
+
+    var newEventRegistered= new registerAnEventModel.fetchModel({
+     event_id:eventId,
+     event_name: allDetails["event_name"],
+     price: allDetails["price"],
+     event_venue :  allDetails["event_venue"],
+     date_and_time: allDetails["date_and_time"],
+     email :  email
+    }); 
+    newEventRegistered.save(function(err) {
+      if (err) {
+          res.send(err);
+      } else {
+          res.redirect('/index');
+      }    
+  });
+
+   
+   });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Upcoming events 
+  app.get('/upcomingEvents',checkAuthenticated,(req,res,next)=>{
+    registerAnEventModel.fetchModel.find({email : "jeet.b@ahduni.edu.in"},function (err, allDetails) {
+      if (err) {
+          console.log(err);
+      } else {
+          // res.render("indexForAdmin", { userData: allDetails })
+          res.render('upcomingEvents',{upcomingEvents:allDetails});
+      }
+    });
+  }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get home page
 app.get('/', function(req, res, next) {
   res.render('login', { title: 'login page' });
@@ -198,7 +280,10 @@ app.get('/', function(req, res, next) {
 
 
 
-app.use('/', usersRouter);
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -212,6 +297,17 @@ app.use(function(req, res, next) {
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000,()=>{
   console.log("the server is running on port 3000");
