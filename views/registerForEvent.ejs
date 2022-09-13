@@ -2,11 +2,11 @@
 <form action="/registerAnEvent" method="POST">
   <div>
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" required />
+    <input type="email" id="email"  name="email" required />
   </div>
   <div>
     <label for="eventId">event-id</label>
-    <input type="text" id="eventId" name="eventId" required />
+    <input type="text" id="eventId" name="eventId" value=<%= event_id %> required />
   </div>
   <button type="submit">Login</button>
 </form>

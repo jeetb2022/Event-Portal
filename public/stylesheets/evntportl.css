@@ -1,8 +1,5 @@
 /* NavBar starts */
 
-*{
-    box-sizing: border-box;
-}
 body{
     text-align: center;
 }
@@ -259,7 +256,7 @@ h2{
     background-color: #fff;
     color: #2B4865;
     margin-top: -10px !important;
-    margin-left: 10% !important;
+    margin-left: 10%  !important;
 }
 
 .event-content h3{
@@ -300,18 +297,9 @@ h2{
 }
 
 .footer-heading{
-    text-align: left;
+    /* text-align: left; */
     padding: 2% 36% 1%;
     margin: 0;
-}
-
-.footer-part{
-    width: 40%;
-    text-align: left;
-}
-
-.footer-list{
-    padding-left: 13rem !important;
 }
 
 .footer-link{

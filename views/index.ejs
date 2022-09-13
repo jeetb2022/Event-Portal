@@ -23,9 +23,12 @@
                 <li class=" nav-item"><a href="" class=" nav-link">Home</a></li>
                 <li class=" nav-item"><a href="" class=" nav-link">Events</a></li>
                 <li class=" nav-item"><a href="/registerAnEvent" class="nav-link">Register</a></li>
-                <li class=" nav-item"><form action="/logout?_method=DELETE" method="POST">
+                <li class=" nav-item"><a href="/upcomingEvents" class="nav-link">Registered Events</a></li>
+                <li class=" nav-item"><a class="nav-link"><form action="/logout?_method=DELETE" method="POST">
                     <button type="submit">Sign Out</button>
-                  </form> </a></li>
+                  </form></a>
+                    
+                </li>
                 <div class="popup">
                     <div class="close-btn">
                         &times;
@@ -33,11 +36,13 @@
                     <div class="form">
                         <h2>Log In</h2>
                         <div class="form-element">
+                            <form action="">
                             <label for="email">E-mail</label>
                             <input type="email" class="email" placeholder="Enter Email"><br>
                             <label for="password">Password</label>
                             <input type="password" class="password" placeholder="Enter Password"><br>
-                            <button>Sign In</button>
+                        </form>
+                            <button >Sign In</button>
                             <a href="#">Forgot Password?</a>
                         </div>
                     </div>
@@ -80,23 +85,28 @@
                 <div class="row justify-content-center text-center">
 
 
-
+  
 
 
                     <% var i=1; %>
                         <% userData.forEach((data)=>{ %>
-                            <div class="col-sm-5" >
+                            <div class="col-sm-5">
 
-                                <div class="img">
-                                
-                                    <img src=<%=data.event_picture %> class="img-fluid" alt="">
-                                </div>
+                                <a href="http://127.1.1.0:3000/registerAnEvent/<%=data.event_id%>">
+                                    <div class="img">
+                                        <img src=<%=data.event_picture %> class="img-fluid" alt="">
+                                    </div>
+                                </a>
                                 <div class="event-content">
-                                    <h3><%=data.event_name %></h3>
+                                    <h3 class="Event-Name">
+                                        <%=data.event_name %>
+                                    </h3>
                                     <span> Event Code : <%=data.event_id %><br> Date: <%=data.date_and_time %><br>
-                        
-                        Venue: <%=data.event_venue %><br>
-                        Price:<%=data.price %></span>
+
+                                                Venue: <%=data.event_venue %><br>
+                                                    Price:<%=data.price %></span>
+
+                                    <!-- <h3><button class="btn">Click me</button></h3> -->
 
                                 </div>
                             </div>
@@ -201,69 +211,58 @@
         <!-- testimonials -->
         <section id="testimonials" class="color-section">
             <div id="testimonials-carousel" class="carousel slide" data-ride="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active container-fluid">
-                        <h2 class="testimonials-text">I recently attended stand up organised by . It was such a fabulous
-                            performance by the artist. I loved the way, he cracked jokes boycott going on.</h2>
-                        <img src="dog-img.jpg" alt="dog-profile" class="testimonials-img">
-                        <em>Pebbles, New York</em>
-                    </div>
-                    <div class="carousel-item container-fluid">
-                        <h2 class="testimonials-text">My dog used to be so lonely, but with TinDog's help, they've found
-                            the love of
-                            their life. I think.</h2>
-                        <img class="testimonials-img" src="lady-img.jpg" alt="lady-profile">
-                        <em>Beverly, Illinois</em>
-                    </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active container-fluid">
+                  <h2 class="testimonials-text">I recently attended stand up organised by  . It was such a fabulous performance by the artist. I loved the way, he cracked jokes boycott going on.</h2>
+                  <img src="dog-img.jpg" alt="dog-profile" class="testimonials-img">
+                  <em>Pebbles, New York</em>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </button>
+                <div class="carousel-item container-fluid">
+                  <h2 class="testimonials-text">My dog used to be so lonely, but with TinDog's help, they've found the love of
+                    their life. I think.</h2>
+                  <img class="testimonials-img" src="lady-img.jpg" alt="lady-profile">
+                  <em>Beverly, Illinois</em>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
             </div>
-        </section>
+          </section>
+
 
 
         <!-- footer -->
 
         <section id="footer">
             <!-- <div class="container text-center"> -->
-            <div class="row">
-                <div class="col-4">
-                    <h2 class="navbar-brand footer-title">
+            <div class="row footer-row">
+                <div class="col-lg-4 col-sm-12">
+                    <h2 class="footer-title">
                         Event Portal</h2>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-sm-12">
                     <h3 class="footer-heading">Links</h3>
-                    <ul class="footer-list">
-                        <li class="footer-part"><a href="#" class="footer-link">Home</a></li>
-                        <li class="footer-part"><a href="#" class="footer-link">Events</a></li>
-                        <li class="footer-part"><a href="#" class="footer-link">Your Events</a></li>
-                        <li class="footer-part"><a href="#" class="footer-link">FaQ's</a></li>
-                    </ul>
+                    <!-- <ul class="footer-list"> -->
+                        <a href="#" class="footer-link">Home</a><br>
+                        <a href="#" class="footer-link">Events</a><br>
+                        <a href="#" class="footer-link">Your Events</a><br>
+                        <a href="#" class="footer-link">FaQ's</a><br>
+                    <!-- </ul> -->
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-sm-12">
                     <h3 class="footer-heading">Contact Us</h3>
-                    <ul class="footer-list">
-                        <li class="footer-part">
-                            <p class="footer-p">eventportal@gmail.com</p>
-                        </li>
-                        <li class="footer-part">
-                            <p class="footer-p">+91-9999999999</p>
-                        </li>
-                        <!-- <li class="footer-part"><p class="footer-p">Your Events</p></li> -->
-                        <li class="footer-part">
-                            <p class="footer-p">Contact Us</p>
-                        </li>
-                    </ul>
+                    <!-- <ul class="footer-list"> -->
+                        <p class="footer-p">eventportal@gmail.com</p>
+                        <p class="footer-p">+91-9999999999</p>
+                        <p class="footer-p">Contact Us</p>
+                    <!-- </ul> -->
                 </div>
             </div>
-            <p class="copyright">Copyright @2022 <i class="fa-brands fa-square-facebook"></i> <i
-                    class="fa-brands fa-instagram "> <i class="fa-brands fa-twitter"></i> </i></p>
+            <p class="copyright">Copyright @2022 <i class="fa-brands fa-square-facebook"></i> <i class="fa-brands fa-instagram "> <i class="fa-brands fa-twitter"></i> </i></p>
             <!-- </div> -->
         </section>
 
@@ -273,22 +272,28 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
     <script>
-   let selector = document.getElementsByTagName('col-sm-5');
-   function clicked(){
-       console.log("clicked");
+        const selector = document.querySelectorAll(".btn");
+        const Eventselector = document.querySelectorAll(".col-sm-5");
 
-}
-for(let element of selector) {
-    element.addEventListener('click', clicked);
-}
+        // for (let element of Eventselector) {
+
+        //     element.addEventListener('click', function (ele) {
+        //         fetch('url')    
+        //         window.location.href = "/registerAnEvent";
+        //         console.log(element.innerHTML);
+        //     });
+        // }
+
+
+
+
+
 
 
         $(document).scroll(function () {

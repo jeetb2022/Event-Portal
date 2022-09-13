@@ -1,5 +1,383 @@
-<h1>Login</h1>
+<!-- <h1>Login</h1>
 <% if (messages.error) { %> <%= messages.error %> <% } %>
 
 <a href="/loginAsUser"> login as a user</a>
 <a href="/loginAsAdmin"> login as a admin</a>
+
+<div class="popup">
+    <div class="close-btn">
+        &times;
+    </div>
+    <div class="form">
+        <h2>Log In</h2>
+        <div class="form-element">
+            <form action="">
+            <label for="email">E-mail</label>
+            <input type="email" class="email" placeholder="Enter Email"><br>
+            <label for="password">Password</label>
+            <input type="password" class="password" placeholder="Enter Password"><br>
+        </form>
+            <button >Sign In</button>
+            <a href="#">Forgot Password?</a>
+        </div>
+    </div>
+</div>
+
+<script>
+       $("#show-login").click(function () {
+            $(".popup").addClass("active");
+        });
+
+        $(".popup .close-btn").click(function () {
+            $(".popup").removeClass("active");
+        });
+       $("#show-login").click(function () {
+            $(".popup").addClass("active");
+        });
+
+        $(".popup .close-btn").click(function () {
+            $(".popup").removeClass("active");
+        });
+</script> -->
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- <link rel="stylesheet" href="styles/style1.css"> -->
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* .cont {
+    display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-columns:repeat(autofit,minmax(550px,1fr));
+        
+        grid-gap: 10px;
+       */
+/* } */
+
+
+body{
+    background: linear-gradient(to right, #3a7bd5,#3a6873);
+    font-family: "Raleway",sans-serif;
+    height: 100vh;
+}
+
+.user{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%,-50%);
+}
+
+.admin{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%,-50%);
+}
+
+.center button{
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    /* width: 10%; */
+    font-weight: 600;
+    color: #222;
+    background: #f5f5f5;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4%;
+    /* display: inline-block; */
+}
+
+.popup{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1.25);
+    width: 25%;
+    height: 45%;
+    opacity: 0;
+    z-index: 1;
+    /* height: 300px; */
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+
+.popup.active{
+    top: 50%;
+    opacity: 1;
+    transform:  translate(-50%,-50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+
+.popup .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup .form{
+    /* text-align: center; */
+    color: #222;
+    margin: 10px 0px 20px;
+    font-size: 1.5rem;
+}
+.popup .form h2{
+    text-align: center;
+}
+
+.popup .form .form-element{
+    margin: 15px 0px;
+}
+
+.popup .form .form-element label{ 
+    font-size: 14px;
+    color: #222;
+}
+
+.popup .form .form-element input[type="email"],
+.popup .form .form-element input[type = "password"]{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.popup .form .form-element button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.popup .form .form-element a{
+    display: block;
+    text-align: right;
+    font-size: 15px;
+    color: #1a79ca;
+    text-decoration: none;
+    font-weight: 600;
+    padding-top: 15px;
+
+
+
+
+
+}
+
+.popup2{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(1.25);
+    width: 25%;
+    height: 45%;
+    opacity: 0;
+    z-index: 1;
+    /* height: 300px; */
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+
+.popup2.active{
+    top: 50%;
+    opacity: 1;
+    transform:  translate(-50%,-50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+
+.popup2 .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup2 .form{
+    /* text-align: center; */
+    color: #222;
+    margin: 10px 0px 20px;
+    font-size: 1.5rem;
+}
+.popup2 .form h2{
+    text-align: center;
+}
+
+.popup2 .form .form-element{
+    margin: 15px 0px;
+}
+
+.popup2 .form .form-element label{ 
+    font-size: 14px;
+    color: #222;
+}
+
+.popup2 .form .form-element input[type="email"],
+.popup2 .form .form-element input[type = "password"]{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.popup2 .form .form-element button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.popup2 .form .form-element a{
+    display: block;
+    text-align: right;
+    font-size: 15px;
+    color: #1a79ca;
+    text-decoration: none;
+    font-weight: 600;
+    padding-top: 15px;  
+}
+</style>
+</head>
+
+<body>
+    
+    
+    <div class="center user">
+        <!-- <div class="image"  style="width: 40%;" >
+
+            <img src="images/user.png" alt="d">
+        </div> -->
+                <button id="show-login-user">Login as User</button>
+            </div>
+            
+            <div class="center admin">
+                <!-- <div class="image" style="width: 40%;" >
+
+                    <img src="images/admin.png" alt="d">
+                </div> -->
+                <button id="show-login-admin">Login as Admin</button>
+            </div>
+    <div class="popup">
+        <div class="close-btn">
+            &times;
+        </div>
+        <div class="form">
+            <h2>Log In As User </h2>
+            <div class="form-element">
+                <form action="/loginAsUser" method="post">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="email" placeholder="Enter Email" name="email"><br>
+                    <label for="password">Password</label>
+                    <input type="password" class="password" placeholder="Enter Password" name="password" required><br>
+                    <button type="submit">Sign In</button>
+                </form>
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup2">
+        <div class="close-btn">
+            &times;
+        </div>
+        <div class="form">
+            <h2>Log In As admin</h2>
+            <div class="form-element">
+                <form action="/loginAsAdmin" method="post">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="email" placeholder="Enter Email" name="email"><br>
+                    <label for="password">Password</label>
+                    <input type="password" class="password" placeholder="Enter Password" name="password" required><br>
+                    <button type="submit">Sign In</button>
+                </form>
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector("#show-login-admin").addEventListener("click",function(){
+            document.querySelector(".popup2").classList.add("active");
+        });
+        
+        document.querySelector(".popup .close-btn").addEventListener("click",function(){
+            document.querySelector(".popup2").classList.remove("active");
+        });
+        
+        document.querySelector("#show-login-user").addEventListener("click",function(){
+            document.querySelector(".popup").classList.add("active");
+        });
+        
+        document.querySelector(".popup .close-btn").addEventListener("click",function(){
+            document.querySelector(".popup").classList.remove("active");
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+

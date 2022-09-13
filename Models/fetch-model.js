@@ -26,5 +26,6 @@ module.exports = {
             return callback(data);
         })
     },
-    fetchModel : userTable
+    fetchModel : userTable,
+    connection : conn
 }
