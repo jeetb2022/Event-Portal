@@ -7,7 +7,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var flash = require('express-flash');
 var session = require('express-session');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 
 
 
@@ -45,7 +45,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const methodOverride = require("method-override");
 
-// db support
+ // db support
 const users = require('./Models/loginModel');
 
 // configuring and initializing passport
@@ -65,7 +65,7 @@ app.use(methodOverride("_method"));
 
 
 
-// routes
+ // routes
 
 // index page
 var fetchModel = require("./Models/fetch-model");
@@ -74,7 +74,6 @@ app.get("/index", checkAuthenticated, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(req.session.passport.id);
       res.render("index", { userData: allDetails })
     }
   })
@@ -95,14 +94,14 @@ app.get("/indexForAdmin", checkAuthenticated, (req, res) => {
 
 
 
-// login page
+ // login page
 app.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login");
 });
 
-// app.get("/loginAsAdmin", checkNotAuthenticated, (req, res) => {
-//   res.render("loginAsAdmin");
-// });
+// // app.get("/loginAsAdmin", checkNotAuthenticated, (req, res) => {
+// //   res.render("loginAsAdmin");
+// // });
 
 
 
@@ -145,7 +144,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
       if (err) {
         res.send(err);
       } else {
-        res.redirect('/loginAsUser');
+        res.redirect('/login');
       }
     });
   } catch (e) {
@@ -156,7 +155,44 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 });
 
 
-// logout of the application
+
+
+
+// register an admin
+app.get("/registerAnAdmin", checkNotAuthenticated, async (req, res) => {
+  res.render('registerAdmin')   ;
+
+});
+app.post("/registerAnAdmin", checkNotAuthenticated, async (req, res) => {
+  try {
+    // const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    var id = "_" + Math.random().toString(36).slice(2);
+    var newUser = new users.admin();
+    newUser.id = id;
+    newUser.name = req.body.name;
+    newUser.email = req.body.email;
+    newUser.password = req.body.password;
+
+    //save the user in mongoData base
+    newUser.save(function (err) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.redirect('/login');
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    res.redirect("/redirect");
+  }
+
+});
+
+
+
+
+
+// // logout of the application
 app.delete("/logout", (req, res) => {
   req.logOut(function(err) {
     if (err) { return next(err); }
@@ -166,7 +202,7 @@ app.delete("/logout", (req, res) => {
 
 
 
-// only authenticated user should enter index page
+// // only authenticated user should enter index page
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -176,7 +212,7 @@ function checkAuthenticated(req, res, next) {
   }
 }
 
-// unauthenticated user should not enter index page
+// // unauthenticated user should not enter index page
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect("/index");
@@ -193,7 +229,7 @@ function checkNotAuthenticated(req, res, next) {
 
 
 
-// adding an event
+// // adding an event
 app.get('/addEvent', checkAuthenticated, (req, res, next) => {
   res.render('addEvent');
 });
@@ -233,7 +269,7 @@ app.post('/addEvent', checkAuthenticated, (req, res, next) => {
 
 
 
-// Detete an event
+// // Detete an event
 app.get('/deleteEvent/:id', (req, res, next) => {
   const event_id = req.params.id;
   res.render('deleteEvent',{event_id : event_id});
@@ -270,7 +306,7 @@ app.post('/deleteEvent', (req, res, next) => {
 
 
 
-// Register For an event 
+// // Register For an event 
 const registerAnEventModel = require('./Models/registerAnEventModel');
 const { redirect } = require('statuses');
 app.get('/registerAnEvent/:id', checkAuthenticated, (req, res, next) => {
@@ -326,7 +362,7 @@ app.post('/registerAnEvent', checkAuthenticated, (req, res, next) => {
 
 
 
-// Upcoming events 
+// // Upcoming events 
 app.get('/upcomingEvents', checkAuthenticated, (req, res, next) => {
   registerAnEventModel.fetchModel.find({ email: "jeet.b@ahduni.edu.in" }, function (err, allDetails) {
     if (err) {
@@ -369,15 +405,23 @@ app.get('/', function (req, res, next) {
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+
+
+
+
+
+
+
 // // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 
 
@@ -390,7 +434,7 @@ app.use(function (req, res, next) {
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT||3000, () => {
   console.log("the server is running on port 3000");
 });
 

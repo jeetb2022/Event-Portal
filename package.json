@@ -29,6 +29,7 @@
     "content-type": "^1.0.4",
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "cookie-signature": "^1.0.6",
     "debug": "^2.6.9",
     "denque": "^2.1.0",

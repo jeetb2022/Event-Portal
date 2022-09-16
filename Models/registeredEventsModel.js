@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/jeet', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://jeet_2022:Ar4HvmddT90M2sDB@cluster0.cqe5zy7.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true});
 var conn = mongoose.connection;
 conn.once('open', function() {
     console.log('database is connected successfully');
