@@ -39,6 +39,7 @@ app.use(flash());
 
 
 
+
 // passport 
 const bcrypt = require("bcrypt");
 const passport = require("passport");
@@ -73,6 +74,7 @@ app.get("/index", checkAuthenticated, (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      console.log(req.session.passport.id);
       res.render("index", { userData: allDetails })
     }
   })
@@ -94,13 +96,13 @@ app.get("/indexForAdmin", checkAuthenticated, (req, res) => {
 
 
 // login page
-app.get("/loginAsUser", checkNotAuthenticated, (req, res) => {
-  res.render("loginAsUser");
+app.get("/login", checkNotAuthenticated, (req, res) => {
+  res.render("login");
 });
 
-app.get("/loginAsAdmin", checkNotAuthenticated, (req, res) => {
-  res.render("loginAsAdmin");
-});
+// app.get("/loginAsAdmin", checkNotAuthenticated, (req, res) => {
+//   res.render("loginAsAdmin");
+// });
 
 
 
@@ -109,7 +111,7 @@ app.post(
   checkNotAuthenticated,
   passport.authenticate("local", {
     successRedirect: "/index",
-    failureRedirect: "/loginAsUser",
+    failureRedirect: "/login",
     failureFlash: true,
   })
 );
@@ -118,7 +120,7 @@ app.post(
   checkNotAuthenticated,
   passport.authenticate("local", {
     successRedirect: "/indexForAdmin",
-    failureRedirect: "/loginAsAdmin",
+    failureRedirect: "/login",
     failureFlash: true,
   })
 );
@@ -153,8 +155,8 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 
 });
 
-// logout of the application
 
+// logout of the application
 app.delete("/logout", (req, res) => {
   req.logOut(function(err) {
     if (err) { return next(err); }
@@ -170,7 +172,7 @@ function checkAuthenticated(req, res, next) {
     return next();
   } else {
     // res.redirect("/login");
-    res.send("u are not authorized  ");
+    res.send("u are not authorized ");
   }
 }
 
@@ -352,10 +354,9 @@ app.get('/upcomingEvents', checkAuthenticated, (req, res, next) => {
 
 
 
-
 // Get home page
 app.get('/', function (req, res, next) {
-  res.render('login', { title: 'login page' });
+  res.render('login');
 });
 
 

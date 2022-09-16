@@ -299,20 +299,36 @@ body{
     font-weight: 600;
     padding-top: 15px;  
 }
+.image img{
+    width: 80%;
+    height: 100px;
+}
+.usericon{
+    position: relative;
+    left: 35.5%;
+    bottom: 30px;
+}
+.adminicon{
+    position: relative;
+    left: 46%;
+    bottom: 30px;
+}
 </style>
 </head>
 
 <body>
     
     
-    <div class="center user">
-        <!-- <div class="image"  style="width: 40%;" >
+    <h1 style="text-align: center; margin-top: 200px;"><% if (messages.error) { %> <%= messages.error %> <% } %></h1>
+    <div>
 
-            <img src="images/user.png" alt="d">
-        </div> -->
+    </div>
+    <i class="fa-sharp fa-solid fa-user fa-10x usericon"></i>
+    <div class="center user">
                 <button id="show-login-user">Login as User</button>
             </div>
             
+            <i class="fa-sharp fa-solid fa-user-tie fa-10x adminicon"></i>
             <div class="center admin">
                 <!-- <div class="image" style="width: 40%;" >
 
@@ -374,6 +390,8 @@ body{
             document.querySelector(".popup").classList.remove("active");
         });
     </script>
+        <script src="https://kit.fontawesome.com/9b3c441b4d.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
