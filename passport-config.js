@@ -20,8 +20,8 @@ function initialize(passport) {
         }
 
         try {
-          console.log(docs["password"]);
-          console.log(password);
+          // console.log(docs["password"]);
+          // console.log(password);
           if ((password === docs["password"])) {
             useId = docs["id"];
             userName = docs["name"];
@@ -41,9 +41,16 @@ function initialize(passport) {
   
   
   passport.use(new LocalStrategy({ usernameField: "email" }, authenticateUser));
-  passport.serializeUser((user, done) => done(null, {id: user.email}));
+  passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, {
+        email : user.email,
+        name : user.name
+      });
+    });
+  });
   passport.deserializeUser((id, done) => {
-    return done(null, useId);
+    return done(null, id);
   });
 }
 

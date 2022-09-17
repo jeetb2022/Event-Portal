@@ -1,13 +1,15 @@
 
+<h2>Register for <%=event_name%> ?</h2>
+
+
 <form action="/registerAnEvent" method="POST">
   <div>
     <label for="email">Email</label>
-    <input type="email" id="email"  name="email" required />
+    <input type="email" id="email" value=<%= Email %> name="email" required />
   </div>
   <div>
     <label for="eventId">event-id</label>
     <input type="text" id="eventId" name="eventId" value=<%= event_id %> required />
   </div>
-  <button type="submit">Login</button>
+  <button type="submit">Register</button>
 </form>
-<a href="/register">Sign up</a>

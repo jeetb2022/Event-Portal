@@ -74,7 +74,7 @@ app.get("/index", checkAuthenticated, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("index", { userData: allDetails })
+      res.render("index", { userData: allDetails ,name : name})
     }
   })
 });
@@ -86,7 +86,7 @@ app.get("/indexForAdmin", checkAuthenticated, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("indexForAdmin", { userData: allDetails })
+      res.render("indexForAdmin", { userData: allDetails ,name : name})
     }
   })
 });
@@ -103,25 +103,33 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
 // //   res.render("loginAsAdmin");
 // // });
 
-
+let email,name;
 
 app.post(
   "/loginAsUser",
   checkNotAuthenticated,
   passport.authenticate("local", {
-    successRedirect: "/index",
+   
     failureRedirect: "/login",
     failureFlash: true,
-  })
-);
+  }),(req,res)=>{
+    res.redirect("/index");
+    email = req.user.email;
+    name = req.user.name;
+  });
+
 app.post(
   "/loginAsAdmin",
   checkNotAuthenticated,
   passport.authenticate("local", {
-    successRedirect: "/indexForAdmin",
+    
     failureRedirect: "/login",
     failureFlash: true,
-  })
+  }),(req,res)=>{
+    res.redirect("/indexForAdmin");
+    email = req.user.email;
+    name = req.user.name;
+  }
 );
 
 // new user register page
@@ -309,9 +317,11 @@ app.post('/deleteEvent', (req, res, next) => {
 // // Register For an event 
 const registerAnEventModel = require('./Models/registerAnEventModel');
 const { redirect } = require('statuses');
-app.get('/registerAnEvent/:id', checkAuthenticated, (req, res, next) => {
+app.get('/registerAnEvent/:id/:name', checkAuthenticated, (req, res, next) => {
   const event_id = req.params.id;
-  res.render('registerForEvent',{event_id : event_id});
+  const event_name = req.params.name;
+  const Email = email;
+  res.render('registerForEvent',{event_id : event_id , Email : Email , event_name :event_name});
 });
 app.post('/registerAnEvent', checkAuthenticated, (req, res, next) => {
   var email = req.body.email;
@@ -362,14 +372,15 @@ app.post('/registerAnEvent', checkAuthenticated, (req, res, next) => {
 
 
 
-// // Upcoming events 
+// Upcoming events 
 app.get('/upcomingEvents', checkAuthenticated, (req, res, next) => {
-  registerAnEventModel.fetchModel.find({ email: "jeet.b@ahduni.edu.in" }, function (err, allDetails) {
+  
+  registerAnEventModel.fetchModel.find({ email: email}, function (err, allDetails) {
     if (err) {
       console.log(err);
     } else {
       // res.render("indexForAdmin", { userData: allDetails })
-      res.render('upcomingEvents', { upcomingEvents: allDetails });
+      res.render('upcomingEvents', { upcomingEvents: allDetails,name : name });
     }
   });
 });
