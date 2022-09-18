@@ -22,28 +22,88 @@
             <ul class="navbar-nav mx-auto">
                 <li class=" nav-item"><a href="" class=" nav-link">Home</a></li>
                 <li class=" nav-item"><a href="" class=" nav-link">Events</a></li>
-                <li class=" nav-item"><a href="/addEvent" id="show-register" class="nav-link">Add Event</a></li>
-                <li class=" nav-item"><a href="/deleteEvent" id="show-register" class="nav-link">Delete Event</a></li>
-                <li class=" nav-item"><a class="nav-link"><form action="/logout?_method=DELETE" method="POST">
-                    <button type="submit">Sign Out</button>
-                  </form></a>
+                <!-- <div class="center"> -->
+                <li class=" nav-item"><a href="#" id="show-register" class="nav-link">Add Event</a></li>
                 <div class="popup">
                     <div class="close-btn">
                         &times;
                     </div>
                     <div class="form">
-                        <h2>Log In</h2>
+                        <h2>Add Events</h2>
                         <div class="form-element">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="email" placeholder="Enter Email"><br>
-                            <label for="password">Password</label>
-                            <input type="password" class="password" placeholder="Enter Password"><br>
-                            <button>Sign In</button>
-                            <a href="#">Forgot Password?</a>
+
+                            <form action="/addEvent" method="POST">
+                                <div>
+                                    <label for="eventName">name</label>
+                                    <input type="text" id="eventName" name="eventName" required />
+                                </div>
+                                <div>
+                                    <label for="eventId">event code</label>
+                                    <input type="text" id="eventId" name="eventId" required />
+                                </div>
+                                <div>
+                                    <label for="price">price</label>
+                                    <input type="text" id="price" name="price" required />
+                                </div>
+                                <div>
+                                    <label for="eventVenue">Venue</label>
+                                    <input type="text" id="eventVenue" name="eventVenue" required />
+                                </div>
+                                <div>
+                                    <label for="eventDateAndTime">date and time</label>
+                                    <input type="text" id="eventDateAndTime" name="eventDateAndTime" required />
+                                </div>
+                                <div>
+                                    <label for="eventPicture">url</label>
+                                    <input type="text" id="eventPicture" name="eventPicture" required />
+                                </div>
+                                <button type="submit">Add event</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="center">
+                <li class=" nav-item"><a href="#" id="show-delete" class="nav-link">Delete Event</a></li>
+                <div class="popup2">
+                    <div class="close-btn">
+                        &times;
+                    </div>
+                    <div class="form">
+                        <h2>Delete Events</h2>
+                        <div class="form-element">
+                            <form action="/deleteEvent" method="POST">
+   
+                                <div>
+                                  <label for="eventId">event code</label>
+                                  <input type="text" id="event-Id"  name="eventId" required />
+                                </div>
+                               
+                                <button type="submit">Remove event</button>
+                              </form>
+                        </div>
+                    </div>
+                </div>
+                <li class=" nav-item"><a class="nav-link">
+                        <form action="/logout?_method=DELETE" method="POST">
+                            <button type="submit">Sign Out</button>
+                        </form>
+                    </a>
+                    <div class="popup">
+                        <div class="close-btn">
+                            &times;
+                        </div>
+                        <div class="form">
+                            <h2>Log In</h2>
+                            <div class="form-element">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="email" placeholder="Enter Email"><br>
+                                <label for="password">Password</label>
+                                <input type="password" class="password" placeholder="Enter Password"><br>
+                                <button>Sign In</button>
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="center">
                     <button id="show-login">Login</button>
                 </div> -->
             </ul>
@@ -61,7 +121,7 @@
             <div class="img-overlay"></div>
         </div>
         <div class="img-content">
-            <h2 class="heading">Welcome  <%=name%> to our event portal</h2>
+            <h2 class="heading">Welcome <%=name%> to our event portal</h2>
             <p class="p-heading">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis, vitae culpa sed
                 officia veniam quasi
                 suscipit tenetur dolores, aperiam rem temporibus quae ipsam fugiat labore excepturi blanditiis adipisci
@@ -89,16 +149,20 @@
                             <div class="col-sm-5">
 
                                 <div class="img">
-                                
-                                    <h3 style="background-color:red ; width: 5% ; position: relative; " ><a href="https://fathomless-retreat-56989.herokuapp.com/deleteEvent/<%=data.event_id%>">X</a></h3>
+
+                                    <h3 style="background-color:red ; width: 5% ; position: relative; "><a
+                                            href="https://fathomless-retreat-56989.herokuapp.com/deleteEvent/<%=data.event_id%>">X</a>
+                                    </h3>
                                     <img src=<%=data.event_picture %> class="img-fluid" alt="">
                                 </div>
                                 <div class="event-content">
-                                    <h3><%=data.event_name %></h3>
+                                    <h3>
+                                        <%=data.event_name %>
+                                    </h3>
                                     <span>Event Code : <%=data.event_id %> <br> Date: <%=data.date_and_time %><br>
-                                        
-                                        Venue: <%=data.event_venue %><br>
-                                        Price:<%=data.price %></span>
+
+                                                Venue: <%=data.event_venue %><br>
+                                                    Price:<%=data.price %></span>
 
                                 </div>
                             </div>
@@ -141,12 +205,12 @@
                                     </div>
                                     <div class="event-content">
                                         <h3>Stand-up comedy</h3> -->
-                                        <!-- <span>Date: 6/9
+                                <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
 
-                                    <!-- </div>
+                                <!-- </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="img">
@@ -155,11 +219,11 @@
                                     </div>
                                     <div class="event-content">
                                         <h3>E-sports</h3> -->
-                                        <!-- <span>Date: 6/9
+                                <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
-                                    <!-- </div>
+                                <!-- </div>
                                 </div>
 
                                 <div class="col-sm-5">
@@ -169,11 +233,11 @@
                                     </div>
                                     <div class="event-content">
                                         <h3>Music-Concert</h3> -->
-                                        <!-- <span>Date: 6/9
+                                <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
-                                    <!-- </div>
+                                <!-- </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="img">
@@ -182,11 +246,11 @@
                                     </div>
                                     <div class="event-content">
                                         <h3>Yacht Party</h3> -->
-                                        <!-- <span>Date: 6/9
+                                <!-- <span>Date: 6/9
                             Time: 4:20 pm
                             Venue: Gict courtyard
                             Comedian: Aakash Gupta </span> -->
-                                    <!-- </div>
+                                <!-- </div>
                                 </div>
                 </div>  -->
 
@@ -198,7 +262,7 @@
 
 
 
-            </div>
+                </div>
         </section>
 
         <!-- testimonials -->
@@ -243,22 +307,23 @@
                 <div class="col-lg-4 col-sm-12">
                     <h3 class="footer-heading">Links</h3>
                     <!-- <ul class="footer-list"> -->
-                        <a href="#" class="footer-link">Home</a><br>
-                        <a href="#" class="footer-link">Events</a><br>
-                        <a href="#" class="footer-link">Your Events</a><br>
-                        <a href="#" class="footer-link">FaQ's</a><br>
+                    <a href="#" class="footer-link">Home</a><br>
+                    <a href="#" class="footer-link">Events</a><br>
+                    <a href="#" class="footer-link">Your Events</a><br>
+                    <a href="#" class="footer-link">FaQ's</a><br>
                     <!-- </ul> -->
                 </div>
                 <div class="col-lg-4 col-sm-12">
                     <h3 class="footer-heading">Contact Us</h3>
                     <!-- <ul class="footer-list"> -->
-                        <p class="footer-p">eventportal@gmail.com</p>
-                        <p class="footer-p">+91-9999999999</p>
-                        <p class="footer-p">Contact Us</p>
+                    <p class="footer-p">eventportal@gmail.com</p>
+                    <p class="footer-p">+91-9999999999</p>
+                    <p class="footer-p">Contact Us</p>
                     <!-- </ul> -->
                 </div>
             </div>
-            <p class="copyright">Copyright @2022 <i class="fa-brands fa-square-facebook"></i> <i class="fa-brands fa-instagram "> <i class="fa-brands fa-twitter"></i> </i></p>
+            <p class="copyright">Copyright @2022 <i class="fa-brands fa-square-facebook"></i> <i
+                    class="fa-brands fa-instagram "> <i class="fa-brands fa-twitter"></i> </i></p>
             <!-- </div> -->
         </section>
 
@@ -284,12 +349,23 @@
         function openForm() {
 
         }
-        $("#show-login").click(function () {
-            $(".popup").addClass("active");
+
+    </script>
+    <script>
+        document.querySelector("#show-register").addEventListener("click", function () {
+            document.querySelector(".popup").classList.add("active");
         });
 
-        $(".popup .close-btn").click(function () {
-            $(".popup").removeClass("active");
+        document.querySelector(".popup .close-btn").addEventListener("click", function () {
+            document.querySelector(".popup").classList.remove("active");
+        });
+
+        document.querySelector("#show-delete").addEventListener("click",function(){
+            document.querySelector(".popup2").classList.add("active");
+        });
+        
+        document.querySelector(".popup2 .close-btn").addEventListener("click",function(){
+            document.querySelector(".popup2").classList.remove("active");
         });
     </script>
     <script src="javasripts/java.js"></script>
