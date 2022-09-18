@@ -1,52 +1,3 @@
-<!-- <h1>Login</h1>
-<% if (messages.error) { %> <%= messages.error %> <% } %>
-
-<a href="/loginAsUser"> login as a user</a>
-<a href="/loginAsAdmin"> login as a admin</a>
-
-<div class="popup">
-    <div class="close-btn">
-        &times;
-    </div>
-    <div class="form">
-        <h2>Log In</h2>
-        <div class="form-element">
-            <form action="">
-            <label for="email">E-mail</label>
-            <input type="email" class="email" placeholder="Enter Email"><br>
-            <label for="password">Password</label>
-            <input type="password" class="password" placeholder="Enter Password"><br>
-        </form>
-            <button >Sign In</button>
-            <a href="#">Forgot Password?</a>
-        </div>
-    </div>
-</div>
-
-<script>
-       $("#show-login").click(function () {
-            $(".popup").addClass("active");
-        });
-
-        $(".popup .close-btn").click(function () {
-            $(".popup").removeClass("active");
-        });
-       $("#show-login").click(function () {
-            $(".popup").addClass("active");
-        });
-
-        $(".popup .close-btn").click(function () {
-            $(".popup").removeClass("active");
-        });
-</script> -->
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +65,7 @@ body{
     left: 50%;
     transform: translate(-50%,-50%) scale(1.25);
     width: 25%;
-    height: 45%;
+    height: 50%;
     opacity: 0;
     z-index: 1;
     /* height: 300px; */
@@ -213,7 +164,7 @@ body{
     left: 50%;
     transform: translate(-50%,-50%) scale(1.25);
     width: 25%;
-    height: 45%;
+    height: 50%;
     opacity: 0;
     z-index: 1;
     /* height: 300px; */
@@ -351,7 +302,7 @@ body{
                     <input type="password" class="password" placeholder="Enter Password" name="password" required><br>
                     <button type="submit">Sign In</button>
                 </form>
-                <a href="#">Forgot Password?</a>
+                <a href="/register">Sign up</a>
             </div>
         </div>
     </div>
@@ -370,7 +321,7 @@ body{
                     <input type="password" class="password" placeholder="Enter Password" name="password" required><br>
                     <button type="submit">Sign In</button>
                 </form>
-                <a href="#">Forgot Password?</a>
+                
             </div>
         </div>
     </div>
