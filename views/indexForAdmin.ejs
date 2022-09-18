@@ -62,26 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <li class=" nav-item"><a href="#" id="show-delete" class="nav-link">Delete Event</a></li>
-                <div class="popup2">
-                    <div class="close-btn">
-                        &times;
-                    </div>
-                    <div class="form">
-                        <h2>Delete Events</h2>
-                        <div class="form-element">
-                            <form action="/deleteEvent" method="POST">
-   
-                                <div>
-                                  <label for="eventId">event code</label>
-                                  <input type="text" id="event-Id"  name="eventId" required />
-                                </div>
-                               
-                                <button type="submit">Remove event</button>
-                              </form>
-                        </div>
-                    </div>
-                </div>
+                <li class=" nav-item"><a href="/views/deleteEvent.ejs" id="show-delete" class="nav-link">Delete Event</a></li>
                 <li class=" nav-item"><a class="nav-link">
                         <form action="/logout?_method=DELETE" method="POST">
                             <button type="submit">Sign Out</button>
@@ -358,14 +339,6 @@
 
         document.querySelector(".popup .close-btn").addEventListener("click", function () {
             document.querySelector(".popup").classList.remove("active");
-        });
-
-        document.querySelector("#show-delete").addEventListener("click",function(){
-            document.querySelector(".popup2").classList.add("active");
-        });
-        
-        document.querySelector(".popup2 .close-btn").addEventListener("click",function(){
-            document.querySelector(".popup2").classList.remove("active");
         });
     </script>
     <script src="javasripts/java.js"></script>
