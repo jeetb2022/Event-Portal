@@ -48,7 +48,7 @@
     "forwarded": "^0.2.0",
     "fresh": "^0.5.2",
     "has-flag": "^4.0.0",
-    "http-errors": "^1.6.3",
+    "http-errors": "^1.8.1",
     "iconv-lite": "^0.4.23",
     "ieee754": "^1.2.1",
     "inherits": "^2.0.3",
