@@ -320,6 +320,8 @@ h2 {
     /* text-align: left; */
     padding: 2% 36% 1%;
     margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .footer-link {
