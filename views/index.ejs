@@ -94,7 +94,7 @@
                         <% userData.forEach((data)=>{ %>
                             <div class="col-sm-5">
 
-                                <a href="localhost:3000/registerAnEvent/<%=data.event_id%>/<%=data.event_name%>">
+                                <a href="http://localhost:3000/registerAnEvent/<%=data.event_id%>/<%=data.event_name%>">
                                     <div class="img">
                                         <img src=<%=data.event_picture %> class="img-fluid" alt="">
                                     </div>
@@ -226,7 +226,7 @@
 
 
         $(document).scroll(function () {
-            $(".navbar").toggleClass("scroll", $(this).scrollTop() > $(".navbar").height());
+            $(".navbar").toggleClass("scroll", $(this).scrollTop() > $(".navbar").height()/2);
         })
 
         function openForm() {
